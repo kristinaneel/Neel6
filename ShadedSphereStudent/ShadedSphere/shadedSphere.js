@@ -39,7 +39,12 @@ var eye;
 var at = vec3(0.0, 0.0, 0.0);
 var up = vec3(0.0, 1.0, 0.0);
 
+var phongFragmentShading = false;
+
 window.onload = function init() {
+
+
+        var program = initShaders(gl, "vertex-shader", "fragment-shader");
 
     canvas = document.getElementById( "gl-canvas" );
 
@@ -133,9 +138,6 @@ window.onload = function init() {
         init();
     };
 
-
-
-
     //MATERIAL PROPERTIES
     document.getElementById("materialAmbientRed").onchange = function(event) {
         materialAmbient[0] = event.target.value;
@@ -187,6 +189,35 @@ window.onload = function init() {
         index = 0;
         pointsArray = [];
         normalsArray = [];
+        init();
+    };
+    document.getElementById("shininess").onchange = function(event){
+        materialShininess = event.target.value;
+        document.getElementById("shininessText").innerHTML = event.target.value;
+        init();
+    };
+
+    document.getElementById("phi").onchange = function(event){
+        phi = event.target.value;
+        document.getElementById("phiText").innerHTML = event.target.value;
+        init();
+    };
+
+    document.getElementById("theta").onchange = function(event){
+        theta = event.target.value;
+        document.getElementById("thetaText").innerHTML = event.target.value;
+        init();
+    };
+
+    document.getElementById("Controls").onclick = function(event){
+        switch(event.target.index){
+            case 0:
+                phongFragmentShading = false;
+                break;
+            case 1:
+                phongFragmentShading = true;
+                break;
+        }
         init();
     };
  
