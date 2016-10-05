@@ -51,8 +51,6 @@ window.onload = function init() {
         var program = initShaders(gl, "vertx-shader", "fragment-shader");
     }
 
-    //var program = initShaders(gl, "vertex-shader", "fragment-shader");
-
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
