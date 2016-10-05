@@ -43,17 +43,6 @@ var phongFragmentShading = false;
 
 window.onload = function init() {
 
-<<<<<<< HEAD
-=======
-    if (phongFragmentShading ==true)
-    {
-        var program = initShaders(gl, "vertex-shader-phong", "fragment-shader-phong");
-    }
-    else{
-        var program = initShaders(gl, "vertx-shader", "fragment-shader");
-    }
->>>>>>> b2f0685b70a235c89b22681a9e08f5735aaee185
-
     canvas = document.getElementById( "gl-canvas" );
 
     gl = WebGLUtils.setupWebGL( canvas );
@@ -64,7 +53,6 @@ window.onload = function init() {
 
     gl.enable(gl.DEPTH_TEST);
 
-    gl.useProgram( program );
 
     if (phongFragmentShading ==true)
     {
@@ -73,6 +61,7 @@ window.onload = function init() {
     else{
         var program = initShaders(gl, "vertex-shader", "fragment-shader");
     }
+    gl.useProgram( program );
 
 
 
