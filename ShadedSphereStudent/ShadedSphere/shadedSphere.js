@@ -43,8 +43,15 @@ var phongFragmentShading = false;
 
 window.onload = function init() {
 
+    if (phongFragmentShading ==true)
+    {
+        var program = initShaders(gl, "vertex-shader-phong", "fragment-shader-phong");
+    }
+    else{
+        var program = initShaders(gl, "vertx-shader", "fragment-shader");
+    }
 
-        var program = initShaders(gl, "vertex-shader", "fragment-shader");
+    //var program = initShaders(gl, "vertex-shader", "fragment-shader");
 
     canvas = document.getElementById( "gl-canvas" );
 
@@ -55,11 +62,6 @@ window.onload = function init() {
     gl.clearColor( 0.9, 0.9, 0.9, 1.0 );
 
     gl.enable(gl.DEPTH_TEST);
-
-    //
-    //  Load shaders and initialize attribute buffers
-    //
-    var program = initShaders( gl, "vertex-shader", "fragment-shader" );
 
     gl.useProgram( program );
 
