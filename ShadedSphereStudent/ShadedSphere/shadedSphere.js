@@ -43,15 +43,6 @@ var phongFragmentShading = false;
 
 window.onload = function init() {
 
-    if (phongFragmentShading ==true)
-    {
-        var program = initShaders(gl, "vertex-shader-phong", "fragment-shader-phong");
-    }
-    else{
-        var program = initShaders(gl, "vertx-shader", "fragment-shader");
-    }
-
-    //var program = initShaders(gl, "vertex-shader", "fragment-shader");
 
     canvas = document.getElementById( "gl-canvas" );
 
@@ -64,6 +55,17 @@ window.onload = function init() {
     gl.enable(gl.DEPTH_TEST);
 
     gl.useProgram( program );
+
+    if (phongFragmentShading ==true)
+    {
+        var program = initShaders(gl, "vertex-shader-phong", "fragment-shader-phong");
+    }
+    else{
+        var program = initShaders(gl, "vertex-shader", "fragment-shader");
+    }
+
+
+
 
     var ambientProduct = mult(lightAmbient, materialAmbient);
     var diffuseProduct = mult(lightDiffuse, materialDiffuse);
@@ -92,6 +94,7 @@ window.onload = function init() {
     projectionMatrixLoc = gl.getUniformLocation( program, "projectionMatrix" );
 
 
+  
 
     //LIGHT PROPERTIES
     document.getElementById("lightAmbientRed").onchange = function(event) {
