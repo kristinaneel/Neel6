@@ -111,6 +111,11 @@ uniform vec4 diffuseProduct;
 uniform vec4 specularProduct;
 uniform float shininess;
 varying vec3 N, L, E;
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+uniform vec4 lightPosition;
+uniform vec4 vPosition;
+uniform vec4 vNormal;
 
 void main()
 {    
