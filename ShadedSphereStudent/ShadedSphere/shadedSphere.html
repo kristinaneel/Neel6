@@ -1,7 +1,7 @@
 <!-- name: Kristina Neel  
      date: October 3rd, 2016
      description: this a program that shows a sphere and allows a user to control how the sphere looks by using sliders
-     proposed points: 
+     proposed points: 14 / 14 I was able to get the functionality of all 19 sliders working, as well as moving the theta and phi, and implementing gouraud and shading models
  -->
 
 <!DOCTYPE html>
@@ -111,36 +111,16 @@ uniform vec4 diffuseProduct;
 uniform vec4 specularProduct;
 uniform float shininess;
 varying vec3 N, L, E;
-uniform mat4 modelViewMatrix;
-uniform mat4 projectionMatrix;
-uniform vec4 lightPosition;
-uniform vec4 vPosition;
-uniform vec4 vNormal;
+// uniform mat4 modelViewMatrix;
 
 void main()
 {    
     vec4 fColor;
-    
-     // pos is vertex position in camera coordinates (before projection)
-    vec3 pos = (modelViewMatrix * vPosition).xyz;
-    
-    // vector from vertex position to light source
-    vec3 L = normalize(lightPosition.xyz - pos);    
-    // check for directional light vs. point light source
-    // must normalize the light vector
-    vec3 light = lightPosition.xyz;
 
-    // the vector from the vertex position to the eye is      
-    vec3 E = -normalize(pos);
-    
     // halfway vector
     vec3 H = normalize(L+E);      
 
-    // Transform vertex normal into eye coordinates    
-    vec3 N = normalize( mat3(modelViewMatrix)*vNormal.xyz);
-
     // Compute terms in the illumination equation
-    
     float Kd = max(dot(L,N), 0.0);    
     float Ks = pow(max(dot(N,H),0.0),shininess);
     vec4 diffuse = Kd*diffuseProduct;
@@ -148,7 +128,7 @@ void main()
     vec4 specular = max((Ks *specularProduct),0.0);
     
 
-    gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+    //gl_Position = projectionMatrix * modelViewMatrix * vPosition;
 
      /* define the fColor value to set to gl_FragColor*/
     fColor.a = 1.0;
